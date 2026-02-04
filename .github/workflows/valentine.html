@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Pratik ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#ffafbd,#ffc3a0);
+    color:#fff;
+    text-align:center;
+    overflow-x:hidden;
+}
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:80px 20px;
+    position:relative;
+    z-index:2;
+}
+.heart{
+    font-size:4rem;
+    animation:beat 1.3s infinite;
+}
+@keyframes beat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.3)}
+}
+.card{
+    background:rgba(255,255,255,0.25);
+    backdrop-filter:blur(10px);
+    border-radius:25px;
+    padding:30px;
+    margin:30px 0;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+button{
+    padding:14px 32px;
+    font-size:1.1rem;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+.yes{
+    background:#fff;
+    color:#ff4f7b;
+}
+.yes:hover{
+    transform:scale(1.1);
+    background:#ffe1ea;
+}
+.no{
+    background:transparent;
+    color:#fff;
+    border:2px solid #fff;
+}
+
+/* Falling hearts */
+.heart-fall{
+    position:fixed;
+    top:-10px;
+    font-size:20px;
+    animation:fall linear forwards;
+    opacity:0.8;
+}
+@keyframes fall{
+    to{transform:translateY(110vh);opacity:0}
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:10;
+}
+.popup-content{
+    background:#fff;
+    color:#ff4f7b;
+    padding:30px;
+    border-radius:25px;
+    max-width:400px;
+    animation:pop 0.5s ease;
+}
+@keyframes pop{
+    from{transform:scale(0.5);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+/* After YES */
+.after-yes{display:none}
+
+/* Typing animation */
+#typing{
+    font-size:2.5rem;
+    font-weight:bold;
+    margin:30px 0;
+    min-height:60px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="heart">❤️</div>
+    <h1>Hey PRATIK 💕</h1>
+    <h2>Will you be my Valentine?</h2>
+
+    <div class="card">
+        तुझ्या प्रत्येक हास्यामध्ये माझं संपूर्ण जग आहे 💖
+    </div>
+
+    <button class="yes" onclick="showPopup()">YES 💘</button>
+    <button class="no" onclick="moveNo()">NO 🙈</button>
+
+    <!-- After YES Content -->
+    <div class="after-yes" id="afterYes">
+
+        <!-- Typing Animation -->
+        <div id="typing"></div>
+
+        <!-- Marathi Love Letter -->
+        <div class="card">
+            <h3>माझं प्रेमपत्र 💌</h3>
+            <p style="line-height:1.7;">
+                प्रिय प्रीतिक,<br><br>
+                तुझ्यावर प्रेम करणं हे माझ्या आयुष्यातलं  
+                सगळ्यात सुंदर सत्य आहे.  
+                तुझ्यासोबत असताना प्रत्येक क्षण खास वाटतो  
+                आणि तुझ्याशिवाय काहीच पूर्ण वाटत नाही.<br><br>
+
+                तू माझं हसणं आहेस, माझा आधार आहेस  
+                आणि माझ्या मनाची शांतता आहेस.  
+                आज, उद्या आणि कायम…  
+                मला फक्त तुझ्यासोबतच चालायचं आहे ❤️<br><br>
+
+                कायमची तुझी 💕
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Proposal Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h3>YAYYY 💖</h3>
+        <p>
+            You just made my heart the happiest 🥹❤️  
+            Thank you for being my Valentine, PRATIK.
+        </p>
+        <button class="yes" onclick="closePopup()">Forever 💕</button>
+    </div>
+</div>
+
+<script>
+// Falling hearts
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart-fall";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},300);
+
+// Popup
+function showPopup(){
+    document.getElementById("popup").style.display="flex";
+}
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+    document.getElementById("afterYes").style.display="block";
+    typeText();
+}
+
+// NO button moves
+function moveNo(){
+    const b=document.querySelector(".no");
+    b.style.position="absolute";
+    b.style.left=Math.random()*80+"vw";
+    b.style.top=Math.random()*80+"vh";
+}
+
+// Typing animation
+const text="I Love You Pratik ❤️";
+let i=0;
+function typeText(){
+    if(i<text.length){
+        document.getElementById("typing").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(typeText,120);
+    }
+}
+</script>
+
+</body>
+</html>
+        
